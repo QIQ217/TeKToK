@@ -6085,9 +6085,9 @@ end
 if text == ("تحديث السورس") and DevTeKToK(msg) then  
 send(msg.chat_id_,msg.id_,'☑┇تم التحديث')
 os.execute('rm -rf TeKToK.lua')
-os.execute('rm -rf start.lua')
-os.execute('wget https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/TeKToK.lua')
-os.execute('wget https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/start.lua')
+os.execute('rm -rf run.lua')
+os.execute('wget https://raw.githubusercontent.com/tektokkid/TeKToK/master/TeKToK.lua')
+os.execute('wget https://raw.githubusercontent.com/tektokkid/TeKToK/master/run.lua')
 dofile('TeKToK.lua')  
 return false
 end
@@ -6202,7 +6202,7 @@ send(msg.chat_id_, msg.id_,t)
 end
 if text == "متجر الملفات" or text == 'المتجر' then
 if DevTeKToK(msg) then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/TeKToKBot/Files_TeKToK/master/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/tektokkid/Files_TeKToK/master/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
@@ -6240,7 +6240,7 @@ t = "*🗂┇ الملف » {"..file.."}\n📬┇ تم تعطيله وحذفه �
 else
 t = "*📬┇ بالتاكيد تم تعطيل وحذف ملف » {"..file.."} \n✓*"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/TeKToKBot/Files_TeKToK/master/Files_TeKToK/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/tektokkid/Files_TeKToK/master/Files_TeKToK/"..file)
 if res == 200 then
 os.execute("rm -fr TeKToK_Files/"..file)
 send(msg.chat_id_, msg.id_,t) 
@@ -6260,7 +6260,7 @@ t = "*📬┇ بالتاكيد تم تنزيل وتفعيل ملف » {"..file..
 else
 t = "*🗂┇ الملف » {"..file.."}\n📬┇ تم تنزيله وتفعيله بنجاح \n💥*"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/TeKToKBot/Files_TeKToK/master/Files_TeKToK/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/tektokkid/Files_TeKToK/master/Files_TeKToK/"..file)
 if res == 200 then
 local chek = io.open("TeKToK_Files/"..file,'w+')
 chek:write(json_file)
@@ -7171,9 +7171,9 @@ end
 if text == "تحديث السورس 📥" then
 send(msg.chat_id_,msg.id_,'☑┇تم التحديث')
 os.execute('rm -rf TeKToK.lua')
-os.execute('rm -rf start.lua')
-os.execute('wget https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/TeKToK.lua')
-os.execute('wget https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/start.lua')
+os.execute('rm -rf run.lua')
+os.execute('wget https://raw.githubusercontent.com/tektokkid/TeKToK/master/TeKToK.lua')
+os.execute('wget https://raw.githubusercontent.com/tektokkid/TeKToK/master/run.lua')
 dofile('TeKToK.lua')  
 return false
 end
