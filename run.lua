@@ -51,8 +51,6 @@ RunTeKToK:write([[
 #!/usr/bin/env bash
 cd $HOME/TeKToK
 token="]]..database:get(Server_TeKToK.."Token_TeKToK")..[["
-rm -fr TeKToK.lua
-wget "https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/TeKToK.lua"
 while(true) do
 rm -fr ../.telegram-cli
 ./tg -s ./TeKToK.lua -p PROFILE --bot=$token
