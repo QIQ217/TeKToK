@@ -1,14 +1,4 @@
-#!/usr/bin/env bash
-cd $HOME/TeKToK
-rm -rf $HOME/.telegram-cli
-ins() {
+THIS_DIR=$(cd $(dirname $0); pwd)
+cd $THIS_DIR
 sudo chmod +x tg
-chmod +x TeKToK
-chmod +x tk
-./tk
-}
-if [ "$1" = "ins" ]; then
-ins
-fi
-chmod +x ins.sh
-lua run.lua
+lua TeKToK.lua

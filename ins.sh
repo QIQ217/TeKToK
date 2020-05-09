@@ -1,19 +1,6 @@
-#!/usr/bin/env bash
-cd $HOME/TeKToK
-ins() {
-rm -rf $HOME/.telegram-cli
+THIS_DIR=$(cd $(dirname $0); pwd)
+cd $THIS_DIR
 sudo chmod +x tg
-chmod +x TeKToK
-chmod +x tk
-./tk
-}
-get() {
-rm -fr TeKToK.lua
-rm -fr sudo.lua
-wget "https://raw.githubusercontent.com/TeKToKBot/TeKToK/master/TeKToK.lua"
-lua run.lua
-}
-ins_sudo(){
 apt update
 apt upgrade
 sudo apt-get update
@@ -37,18 +24,6 @@ sudo apt-get install libnotify-dev -y
 sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev lua-socket lua-sec lua-expat libevent-dev make unzip git redis-server autoconf g++ libjansson-dev libpython-dev expat libexpat1-dev -y
 sudo apt-get update 
 sudo apt-get upgrade -y
-}
-if [ "$1" = "ins" ]; then
-ins
-fi
-if [ "$1" = "get" ]; then
-get
-fi
-ins_sudo
 cd ..
 rm -rf luarocks*
-cd TeKToK
-rm -rf luarocks*
-lua run.lua
-
-
+lua TeKToK.lua
