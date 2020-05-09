@@ -2858,11 +2858,11 @@ return false
 end
 local link = redis:get(bot_id.."Status:link:set:Group"..msg.chat_id_)            
 if link then                              
-send(msg.chat_id_,msg.id_,"⌔︙ - 𝒍𝒊𝒏𝒌 𝒈𝒓𝒐𝒖𝒑  :\n ["..link.."]\n••━━━━━━━━━━━━••")
+send(msg.chat_id_,msg.id_,"⌔︙𝘭𝘪𝘯𝘬 𝘨𝘳𝘰𝘶𝘱 :\n ["..link.."]\n••━━━━━━━━━━━━••")
 else                
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
 if linkgpp.ok == true then 
-send(msg.chat_id_,msg.id_,"⌔︙ - 𝒍𝒊𝒏𝒌 𝒈𝒓𝒐𝒖𝒑  :\n ["..linkgpp.result.."]\n••━━━━━━━━━━━━••")
+send(msg.chat_id_,msg.id_,"⌔︙𝘭𝘪𝘯𝘬 𝘨𝘳𝘰𝘶𝘱 :\n ["..linkgpp.result.."]\n••━━━━━━━━━━━━••")
 redis:set(bot_id.."Status:link:set:Group"..msg.chat_id_,linkgpp.result)
 else
 send(msg.chat_id_, msg.id_,"⌔︙لا يوجد رابط للمجموعه")              
