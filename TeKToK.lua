@@ -2591,31 +2591,7 @@ end
 end
 end
 elseif data.ID == ("UpdateOption") and data.value_.value_ == ("Ready")  then
-local list = redis:smembers(bot_id..'Num:User:Pv')  
-for k,v in pairs(list) do 
-tdcli_function({ID='GetChat',chat_id_ = v},function(arg,data) end,nil) 
-end 
-local list = redis:smembers(bot_id..'ChekBotAdd') 
-for k,v in pairs(list) do 
-tdcli_function({ID='GetChat',chat_id_ = v},function(arg,data)
-if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusMember" then
-tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=v,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
-redis:srem(bot_id..'ChekBotAdd',v)  
-end
-if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusLeft" then
-redis:srem(bot_id..'ChekBotAdd',v)  
-end
-if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusKicked" then
-redis:srem(bot_id..'ChekBotAdd',v)  
-end
-if data and data.code_ and data.code_ == 400 then
-redis:srem(bot_id..'ChekBotAdd',v)  
-end
-if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusEditor" then
-redis:sadd(bot_id..'ChekBotAdd',v)  
-end 
-end,nil)
-end
+
 end
 end
 
