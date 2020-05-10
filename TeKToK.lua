@@ -2257,7 +2257,7 @@ redis:setex(bot_id..'Ban:Cmd:Start'..msg.sender_user_id_,60,true)
 return false
 end
 if not Dev_tektok(msg) and not redis:sismember(bot_id..'User:Ban:Pv',msg.sender_user_id_) and not redis:get(bot_id..'Status:Lock:Twasl') then
-send(msg.sender_user_id_,msg.id_,'⌔︙تم ارسال رسالتك الى المطور ← { [tahaj20] }')    
+send(msg.sender_user_id_,msg.id_,'⌔︙تم ارسال رسالتك الى المطور ← { ['..UserName_Dev..'] }')    
 local List_id = {Id_Dev,msg.sender_user_id_}
 for k,v in pairs(List_id) do   
 tdcli_function({ID="GetChat",chat_id_=v},function(arg,chat) end,nil)
