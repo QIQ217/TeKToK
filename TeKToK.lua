@@ -190,12 +190,12 @@ return false
 end 
 end
 function Vips(msg)
+vipss = false 
 local hash = redis:sismember(bot_id..'Vip:Group'..msg.chat_id_,msg.sender_user_id_) 
-if hash or Dev_tektok(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Constructor(msg) or Owner(msg) or Admin(msg) or Bot(msg) then     
-return true 
-else 
-return false 
+if hash or Dev_tektok(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Constructor(msg) or Owner(msg) or Admin(msg) then     
+vipss = true  
 end 
+return vipss
 end
 ------------------------------------------------------------------------------------------------------------
 function Rank_Checking(user_id,chat_id)
@@ -1252,7 +1252,7 @@ end
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if not Vips(msg) and msg.content_.ID ~= "MessageChatAddMembers" and redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") then 
+if msg.content_.ID ~= "MessageChatAddMembers" and redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") and not Vips(msg) then 
 if msg.sender_user_id_ ~= bot_id then
 floods = redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") or "nil"
 Num_Msg_Max = redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Num:Spam") or 5
@@ -1299,7 +1299,6 @@ end
 end
 ------------------------------------------------------------------------------------------------------------
 if redis:get(bot_id.."Broadcasting:Groups:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
-print(text)
 if text == "الغاء" or text == "الغاء ✖" then   
 send(msg.chat_id_,msg.id_, "\n⌔︙تم الغاء الاذاعه للمجموعات") 
 redis:del(bot_id.."Broadcasting:Groups:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
