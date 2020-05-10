@@ -140,7 +140,7 @@ idbot = true
 end  
 return idbot  
 end 
-function Dev_tektok_User(user)  
+local function Dev_tektok_User(user)  
 local Dev_tektok_User = false  
 for k,v in pairs(Ids_Dev) do  
 if user == v then  
@@ -149,10 +149,13 @@ end
 end  
 return Dev_tektok_User  
 end 
-function DeveloperBot(msg) 
+local function DeveloperBot(msg) 
 deved = false
 local Status = redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) 
-if Status or Dev_tektok(msg) or Bot(msg) then  
+if Status then
+deved = true  
+end
+if Dev_tektok(msg) == true then  
 deved = true  
 end  
 return deved
@@ -160,39 +163,99 @@ end
 function PresidentGroup(msg)
 PresidentGroup = false
 local hash = redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) 
-if hash or Dev_tektok(msg) or DeveloperBot(msg) or Bot(msg) then  
-PresidentGroup =  true 
+if hash then 
+PresidentGroup = true  
 end
+if Dev_tektok(msg) == true then  
+PresidentGroup = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+PresidentGroup = true  
+end 
 return PresidentGroup
 end
 function Constructor(msg)
 Constructor = false    
 local hash = redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) 
-if hash or Dev_tektok(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Bot(msg) then     
-Constructor =  true        
+if hash then 
+Constructor = true  
+end
+if Dev_tektok(msg) == true then  
+Constructor = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+Constructor = true  
 end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+Constructor = true  
+end
 return Constructor
 end
 function Owner(msg)
 Owner = false
 local hash = redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_)    
-if hash or Dev_tektok(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Constructor(msg) or Bot(msg) then     
-Owner = true    
+if hash then 
+Owner = true  
+end
+if Dev_tektok(msg) == true then  
+Owner = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+Owner = true  
 end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+Owner = true  
+end
+if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
+Owner = true  
+end
 return Owner
 end
 function Admin(msg)
 Admiin = false
 local hash = redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_)    
-if hash or Dev_tektok(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Constructor(msg) or Owner(msg) or Bot(msg) then     
-Admiin = true     
+if hash then 
+Admiin = true  
+end
+if Dev_tektok(msg) == true then  
+Admiin = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+Admiin = true  
 end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+Admiin = true  
+end
+if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
+Admiin = true  
+end
+if redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_) then  
+Admiin = true  
+end
 return Admiin 
 end
 function Vips(msg)
 vipss = false 
 local hash = redis:sismember(bot_id..'Vip:Group'..msg.chat_id_,msg.sender_user_id_) 
-if hash or Dev_tektok(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Constructor(msg) or Owner(msg) or Admin(msg) then     
+if hash then 
+vipss = true  
+end
+if Dev_tektok(msg) == true then  
+vipss = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+vipss = true  
+end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+vipss = true  
+end
+if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
+vipss = true  
+end
+if redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_) then  
+vipss = true  
+end
+if redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_) then       
 vipss = true  
 end 
 return vipss
@@ -7072,7 +7135,7 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 Dev_tektok_File(msg,data)
-FilestektokBot(msg)
+FilestektokBot(msg,data)
 elseif data.ID == ("UpdateMessageEdited") then
 tdcli_function ({ID = "GetMessage",chat_id_ = data.chat_id_,message_id_ = tonumber(data.message_id_)},function(extra, result, success)
 local textedit = result.content_.text_
