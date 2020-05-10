@@ -1602,64 +1602,64 @@ redis:set(bot_id.."Set:Id:Group"..msg.chat_id_,text:match("(.*)"))
 send(msg.chat_id_, msg.id_,'⌔︙تم تعين الايدي الجديد')    
 end
 ------------------------------------------------------------------------------------------------------------
-if text == ""..(redis:get(bot_id.."Random:Sm"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Set:Sma"..msg.chat_id_) then
-if not redis:get(bot_id.."Set:Sma"..msg.chat_id_) then 
+if text == ""..(redis:get(bot_id.."Status:Random:Sm"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Status:Set:Sma"..msg.chat_id_) then
+if not redis:get(bot_id.."Status:Set:Sma"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - سمايل او سمايلات")
-redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
-redis:set(bot_id.."Set:Sma"..msg.chat_id_,true)
+redis:set(bot_id.."Status:Set:Sma"..msg.chat_id_,true)
 return false
 end 
 ------------------------------------------------------------------------------------------------------------
-if text == ""..(redis:get(bot_id.."Klam:Speed"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Speed:Tr"..msg.chat_id_) then
-if not redis:get(bot_id.."Speed:Tr"..msg.chat_id_) then 
+if text == ""..(redis:get(bot_id.."Status:Klam:Speed"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Status:Speed:Tr"..msg.chat_id_) then
+if not redis:get(bot_id.."Status:Speed:Tr"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - الاسرع او ترتيب")
-redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
-redis:set(bot_id.."Speed:Tr"..msg.chat_id_,true)
+redis:set(bot_id.."Status:Speed:Tr"..msg.chat_id_,true)
 end 
 ------------------------------------------------------------------------------------------------------------
-if text == ""..(redis:get(bot_id.."Klam:Hzor"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Set:Hzora"..msg.chat_id_) then
-if not redis:get(bot_id.."Set:Hzora"..msg.chat_id_) then 
+if text == ""..(redis:get(bot_id.."Status:Klam:Hzor"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Status:Set:Hzora"..msg.chat_id_) then
+if not redis:get(bot_id.."Status:Set:Hzora"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - حزوره")
-redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
-redis:set(bot_id.."Set:Hzora"..msg.chat_id_,true)
+redis:set(bot_id.."Status:Set:Hzora"..msg.chat_id_,true)
 end 
 ------------------------------------------------------------------------------------------------------------
-if text == ""..(redis:get(bot_id.."Maany"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Set:Maany"..msg.chat_id_) then
-if not redis:get(bot_id.."Set:Maany"..msg.chat_id_) then 
+if text == ""..(redis:get(bot_id.."Status:Maany"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Status:Set:Maany"..msg.chat_id_) then
+if not redis:get(bot_id.."Status:Set:Maany"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - معاني")
-redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
-redis:set(bot_id.."Set:Maany"..msg.chat_id_,true)
+redis:set(bot_id.."Status:Set:Maany"..msg.chat_id_,true)
 end 
 ------------------------------------------------------------------------------------------------------------
-if text == ""..(redis:get(bot_id.."Set:Aks:Game"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Set:Aks"..msg.chat_id_) then
-if not redis:get(bot_id.."Set:Aks"..msg.chat_id_) then 
+if text == ""..(redis:get(bot_id.."Status:Set:Aks:Game"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Status:Set:Aks"..msg.chat_id_) then
+if not redis:get(bot_id.."Status:Set:Aks"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - العكس")
-redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
-redis:set(bot_id.."Set:Aks"..msg.chat_id_,true)
+redis:set(bot_id.."Status:Set:Aks"..msg.chat_id_,true)
 end 
 ------------------------------------------------------------------------------------------------------------
-if redis:get(bot_id.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
+if redis:get(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
 if text and text:match("^(%d+)$") then
 local NUM = text:match("^(%d+)$")
 if tonumber(NUM) > 20 then
 send(msg.chat_id_, msg.id_,"⌔︙عذرآ لا يمكنك تخمين عدد اكبر من ال { 20 } خمن رقم ما بين ال{ 1 و 20 }\n")
 return false  end 
-local GETNUM = redis:get(bot_id.."GAMES:NUM"..msg.chat_id_)
+local GETNUM = redis:get(bot_id.."Status:GAMES:NUM"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
-redis:del(bot_id.."SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
-redis:del(bot_id.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,5)  
+redis:del(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
+redis:del(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,5)  
 send(msg.chat_id_, msg.id_,"⌔︙مبروك فزت ويانه وخمنت الرقم الصحيح\n⌔︙تم اضافة { 5 } من النقاط \n")
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
-redis:incrby(bot_id.."SADD:NUM"..msg.chat_id_..msg.sender_user_id_,1)
-if tonumber(redis:get(bot_id.."SADD:NUM"..msg.chat_id_..msg.sender_user_id_)) >= 3 then
-redis:del(bot_id.."SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
-redis:del(bot_id.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+redis:incrby(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_,1)
+if tonumber(redis:get(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)) >= 3 then
+redis:del(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
+redis:del(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 send(msg.chat_id_, msg.id_,"⌔︙اوبس لقد خسرت في اللعبه \n⌔︙حظآ اوفر في المره القادمه \n⌔︙كان الرقم الذي تم تخمينه { "..GETNUM.." }")
 else
 send(msg.chat_id_, msg.id_,"⌔︙اوبس تخمينك غلط \n⌔︙ارسل رقم تخمنه مره اخرى ")
@@ -1668,40 +1668,40 @@ end
 end
 end
 ------------------------------------------------------------------------------------------------------------
-if redis:get(bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
+if redis:get(bot_id.."Status:SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
 if text and text:match("^(%d+)$") then
 local NUM = text:match("^(%d+)$")
 if tonumber(NUM) > 6 then
 send(msg.chat_id_, msg.id_,"⌔︙عذرا لا يوجد سواء { 6 } اختيارات فقط ارسل اختيارك مره اخرى\n")
 return false  end 
-local GETNUM = redis:get(bot_id.."Games:Bat"..msg.chat_id_)
+local GETNUM = redis:get(bot_id.."Status:Games:Bat"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
-redis:del(bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+redis:del(bot_id.."Status:SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 send(msg.chat_id_, msg.id_,"⌔︙مبروك فزت وطلعت المحيبس بل ايد رقم { "..NUM.." }\n⌔︙لقد حصلت على { 3 }من نقاط يمكنك استبدالهن برسائل ")
-redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,3)  
+redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,3)  
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
-redis:del(bot_id.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+redis:del(bot_id.."Status:SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 send(msg.chat_id_, msg.id_,"⌔︙للاسف لقد خسرت \n⌔︙المحيبس بل ايد رقم { "..GETNUM.." }\n⌔︙حاول مره اخرى للعثور على المحيبس")
 end
 end
 end
 ------------------------------------------------------------------------------------------------------------
-if text == ""..(redis:get(bot_id..":Set:Moktlf"..msg.chat_id_) or "").."" then 
-if not redis:get(bot_id.."Set:Moktlf:Bot"..msg.chat_id_) then 
-redis:del(bot_id..":Set:Moktlf"..msg.chat_id_)
+if text == ""..(redis:get(bot_id.."Status::Set:Moktlf"..msg.chat_id_) or "").."" then 
+if not redis:get(bot_id.."Status:Set:Moktlf:Bot"..msg.chat_id_) then 
+redis:del(bot_id.."Status::Set:Moktlf"..msg.chat_id_)
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - المختلف")
-redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
-redis:set(bot_id.."Set:Moktlf:Bot"..msg.chat_id_,true)
+redis:set(bot_id.."Status:Set:Moktlf:Bot"..msg.chat_id_,true)
 end
 ------------------------------------------------------------------------------------------------------------
-if text == ""..(redis:get(bot_id.."Set:Amth"..msg.chat_id_) or "").."" then 
-if not redis:get(bot_id.."Set:Amth:Bot"..msg.chat_id_) then 
-redis:del(bot_id.."Set:Amth"..msg.chat_id_)
+if text == ""..(redis:get(bot_id.."Status:Set:Amth"..msg.chat_id_) or "").."" then 
+if not redis:get(bot_id.."Status:Set:Amth:Bot"..msg.chat_id_) then 
+redis:del(bot_id.."Status:Set:Amth"..msg.chat_id_)
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - امثله")
-redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
-redis:set(bot_id.."Set:Amth:Bot"..msg.chat_id_,true)
+redis:set(bot_id.."Status:Set:Amth:Bot"..msg.chat_id_,true)
 end
 ------------------------------------------------------------------------------------------------------------
 if redis:get(bot_id.."Status:Add:msg:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
@@ -3144,7 +3144,7 @@ return false
 end
 Send_Options(msg,result.sender_user_id_,"reply","⌔︙تم حظره عام من المجموعات")  
 redis:sadd(bot_id.."Removal:User:Groups", result.sender_user_id_)
-Kick_Group(result.chat_id_, result.sender_user_id_)
+KickGroup(result.chat_id_, result.sender_user_id_)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 elseif text == ("الغاء العام") and tonumber(msg.reply_to_message_id_) ~= 0 and Dev_tektok(msg) then
@@ -3368,7 +3368,7 @@ send(msg.chat_id_, msg.id_,"⌔︙لا توجد لدي صلاحية حظر ال�
 return false  
 end
 redis:sadd(bot_id.."Removal:User:Group"..msg.chat_id_, result.sender_user_id_)
-Kick_Group(result.chat_id_, result.sender_user_id_)
+KickGroup(result.chat_id_, result.sender_user_id_)
 Send_Options(msg,result.sender_user_id_,"reply","⌔︙تم حظره من المجموعه")  
 end,nil)   
 end
