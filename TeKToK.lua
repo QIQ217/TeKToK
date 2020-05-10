@@ -150,44 +150,44 @@ end
 return Dev_tektok_User  
 end 
 function DeveloperBot(msg) 
+deved = false
 local Status = redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) 
 if Status or Dev_tektok(msg) or Bot(msg) then  
-return true  
-else  
-return false  
+deved = true  
 end  
+return deved
 end
 function PresidentGroup(msg)
+PresidentGroup = false
 local hash = redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) 
 if hash or Dev_tektok(msg) or DeveloperBot(msg) or Bot(msg) then  
-return true 
-else 
-return false 
-end 
+PresidentGroup =  true 
+end
+return PresidentGroup
 end
 function Constructor(msg)
+Constructor = false    
 local hash = redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) 
 if hash or Dev_tektok(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Bot(msg) then     
-return true    
-else    
-return false    
+Constructor =  true        
 end 
+return Constructor
 end
 function Owner(msg)
+Owner = false
 local hash = redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_)    
 if hash or Dev_tektok(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Constructor(msg) or Bot(msg) then     
-return true    
-else    
-return false    
+Owner = true    
 end 
+return Owner
 end
 function Admin(msg)
+Admiin = false
 local hash = redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_)    
 if hash or Dev_tektok(msg) or DeveloperBot(msg) or PresidentGroup(msg) or Constructor(msg) or Owner(msg) or Bot(msg) then     
-return true    
-else    
-return false    
+Admiin = true     
 end 
+return Admiin 
 end
 function Vips(msg)
 vipss = false 
@@ -6196,7 +6196,7 @@ name = string.gsub(name,"🧚‍♀","🧚‍♂🧚‍♂🧚‍♂🧚‍♂�
 name = string.gsub(name,"🧜‍♂","🧜‍♀🧜‍♀🧜‍♀🧜‍♀🧜‍♀🧚‍♂🧜‍♀🧜‍♀🧜‍♀")
 name = string.gsub(name,"🧝‍♂","🧝‍♀🧝‍♀🧝‍♀🧝‍♀🧝‍♀🧝‍♂🧝‍♀🧝‍♀🧝‍♀")
 name = string.gsub(name,"🙍‍♂️","🙎‍♂️🙎‍♂️🙎‍♂️🙎‍♂️🙎‍♂️🙍‍♂️🙎‍♂️🙎‍♂️🙎‍♂️")
-name = string.gsub(name,"🧖‍♂️","🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♂️🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♀️")
+name = string.gsub(name,"🧖‍♂️","🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♂️??‍♀️🧖‍♀️🧖‍♀️🧖‍♀️")
 name = string.gsub(name,"👬","👭👭👭👭👭👬??👭👭")
 name = string.gsub(name,"👨‍👨‍👧","👨‍👨‍👦👨‍👨‍👦👨‍👨‍👦👨‍👨‍👦👨‍👨‍👧👨‍👨‍👦👨‍👨‍👦")
 name = string.gsub(name,"🕒","🕒🕒🕒🕒🕒🕒🕓🕒🕒🕒")
