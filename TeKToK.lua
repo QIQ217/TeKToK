@@ -1605,7 +1605,7 @@ end
 if text == ""..(redis:get(bot_id.."Status:Random:Sm"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Status:Set:Sma"..msg.chat_id_) then
 if not redis:get(bot_id.."Status:Set:Sma"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - سمايل او سمايلات")
-redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Status:Set:Sma"..msg.chat_id_,true)
 return false
@@ -1614,7 +1614,7 @@ end
 if text == ""..(redis:get(bot_id.."Status:Klam:Speed"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Status:Speed:Tr"..msg.chat_id_) then
 if not redis:get(bot_id.."Status:Speed:Tr"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - الاسرع او ترتيب")
-redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Status:Speed:Tr"..msg.chat_id_,true)
 end 
@@ -1622,7 +1622,7 @@ end
 if text == ""..(redis:get(bot_id.."Status:Klam:Hzor"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Status:Set:Hzora"..msg.chat_id_) then
 if not redis:get(bot_id.."Status:Set:Hzora"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - حزوره")
-redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Status:Set:Hzora"..msg.chat_id_,true)
 end 
@@ -1630,7 +1630,7 @@ end
 if text == ""..(redis:get(bot_id.."Status:Maany"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Status:Set:Maany"..msg.chat_id_) then
 if not redis:get(bot_id.."Status:Set:Maany"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - معاني")
-redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Status:Set:Maany"..msg.chat_id_,true)
 end 
@@ -1638,7 +1638,7 @@ end
 if text == ""..(redis:get(bot_id.."Status:Set:Aks:Game"..msg.chat_id_) or "").."" and not redis:get(bot_id.."Status:Set:Aks"..msg.chat_id_) then
 if not redis:get(bot_id.."Status:Set:Aks"..msg.chat_id_) then 
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - العكس")
-redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Status:Set:Aks"..msg.chat_id_,true)
 end 
@@ -1653,7 +1653,7 @@ local GETNUM = redis:get(bot_id.."Status:GAMES:NUM"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
 redis:del(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_)
 redis:del(bot_id.."Status:GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,5)  
+redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,5)  
 send(msg.chat_id_, msg.id_,"⌔︙مبروك فزت ويانه وخمنت الرقم الصحيح\n⌔︙تم اضافة { 5 } من النقاط \n")
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
 redis:incrby(bot_id.."Status:SADD:NUM"..msg.chat_id_..msg.sender_user_id_,1)
@@ -1678,7 +1678,7 @@ local GETNUM = redis:get(bot_id.."Status:Games:Bat"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
 redis:del(bot_id.."Status:SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 send(msg.chat_id_, msg.id_,"⌔︙مبروك فزت وطلعت المحيبس بل ايد رقم { "..NUM.." }\n⌔︙لقد حصلت على { 3 }من نقاط يمكنك استبدالهن برسائل ")
-redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,3)  
+redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_,3)  
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
 redis:del(bot_id.."Status:SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
 send(msg.chat_id_, msg.id_,"⌔︙للاسف لقد خسرت \n⌔︙المحيبس بل ايد رقم { "..GETNUM.." }\n⌔︙حاول مره اخرى للعثور على المحيبس")
@@ -1690,7 +1690,7 @@ if text == ""..(redis:get(bot_id.."Status::Set:Moktlf"..msg.chat_id_) or "")..""
 if not redis:get(bot_id.."Status:Set:Moktlf:Bot"..msg.chat_id_) then 
 redis:del(bot_id.."Status::Set:Moktlf"..msg.chat_id_)
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - المختلف")
-redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Status:Set:Moktlf:Bot"..msg.chat_id_,true)
 end
@@ -1699,7 +1699,7 @@ if text == ""..(redis:get(bot_id.."Status:Set:Amth"..msg.chat_id_) or "").."" th
 if not redis:get(bot_id.."Status:Set:Amth:Bot"..msg.chat_id_) then 
 redis:del(bot_id.."Status:Set:Amth"..msg.chat_id_)
 send(msg.chat_id_, msg.id_,"\n⌔︙لقد فزت في اللعبه \n⌔︙اللعب مره اخره وارسل - امثله")
-redis:incrby(bot_id.."Status:Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
+redis:incrby(bot_id.."Num:Add:Games"..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 redis:set(bot_id.."Status:Set:Amth:Bot"..msg.chat_id_,true)
 end
@@ -3439,6 +3439,26 @@ https.request("https://api.telegram.org/bot" .. token .. "/restrictChatMember?ch
 Send_Options(msg,result.sender_user_id_,"reply","⌔︙تم الغاء تقييده")  
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
+elseif text == ("تقيد") and tonumber(msg.reply_to_message_id_) ~= 0 and Admin(msg) then
+local url,res = http.request('http://teamstorm.tk/chh/?id='..msg.sender_user_id_)
+data = JSON.decode(url)
+if data.Ch_Member.TekToK ~= true then
+send(msg.chat_id_,msg.id_,'\n⌔︙عليك الاشتراك في قناة البوت \n⌔︙قناة البوت ← { @b666P }')   
+return false 
+end
+function FunctionStatus(arg, result)
+if msg.can_be_deleted_ == false then 
+send(msg.chat_id_, msg.id_,"⌔︙عذرآ البوت ليس ادمن") 
+return false  
+end
+if Rank_Checking(result.sender_user_id_, msg.chat_id_) == true then
+send(msg.chat_id_, msg.id_, "\n⌔︙لا تستطيع -( حظر , طرد , كتم , تقيد ) : "..Get_Rank(result.sender_user_id_,msg.chat_id_).."")
+return false
+end
+https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..msg.chat_id_.."&user_id="..result.sender_user_id_)
+Send_Options(msg,result.sender_user_id_,"reply","⌔︙تم تقييده")  
+end
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, FunctionStatus, nil)
 elseif text and text:match("^حظر عام @(.*)$") and Dev_tektok(msg) then
 local url,res = http.request('http://teamstorm.tk/chh/?id='..msg.sender_user_id_)
 data = JSON.decode(url)
@@ -3758,16 +3778,16 @@ if redis:sismember(bot_id.."Validitys:Group"..msg.chat_id_,text:match("رفع (.
 function Status_reply(extra, result, success)   
 local statusrt = redis:get(bot_id.."Add:Validity:Group:Rt"..text:match("رفع (.*)")..msg.chat_id_)
 if statusrt == "مميز" and Admin(msg) then
-redis:set(bot_id.."Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,RTPA) 
+redis:set(bot_id.."Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,text:match("رفع (.*)")) 
 redis:sadd(bot_id.."Vip:Group"..msg.chat_id_,result.sender_user_id_)  
 elseif statusrt == "ادمن" and Owner(msg) then 
-redis:set(bot_id.."Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,RTPA)
+redis:set(bot_id.."Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,text:match("رفع (.*)"))
 redis:sadd(bot_id.."Admin:Group"..msg.chat_id_,result.sender_user_id_)  
 elseif statusrt == "مدير" and Constructor(msg) then
-redis:set(bot_id.."Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,RTPA)  
+redis:set(bot_id.."Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,text:match("رفع (.*)"))  
 redis:sadd(bot_id.."Manager:Group"..msg.chat_id_,result.sender_user_id_)  
 elseif statusrt == "عضو" and Admin(msg) then
-redis:set(bot_id.."Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,RTPA)  
+redis:set(bot_id.."Add:Validity:Users"..msg.chat_id_..result.sender_user_id_,text:match("رفع (.*)"))  
 end
 Send_Options(msg,result.sender_user_id_,"reply","⌔︙تم ترقيته : "..text:match("رفع (.*)").."")  
 end   
