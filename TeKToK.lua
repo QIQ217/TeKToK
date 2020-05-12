@@ -5043,7 +5043,7 @@ local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token.
 if link then                              
 test = test..""..k.."- » "..v.."\n { "..link.."}\n"
 else                
-test = test..""..k.."- » "..v.."\n { "..linkgpp.result.."}\n"
+test = test..""..k.."- » "..v.."\n { "..(linkgpp.result or 'no link').."}\n"
 end
 end
 local f = io.open('Link_Groups.txt', 'w')
