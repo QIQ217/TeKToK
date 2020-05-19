@@ -1563,7 +1563,7 @@ if text and not Vips(msg) then
 local Text_Filter = redis:get(bot_id.."Filter:Reply2"..text..msg.chat_id_)   
 if Text_Filter then    
 Send_Options(msg,msg.sender_user_id_,"reply","⌔︙"..Text_Filter)  
-DeleteMessage(msg.chat_id_, {[0] = msg.id_})     
+Delete_Message(msg.chat_id_, {[0] = msg.id_})     
 return false
 end
 end
