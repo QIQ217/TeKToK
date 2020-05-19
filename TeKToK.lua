@@ -114,7 +114,7 @@ token = sudos.Token_Bot
 UserName_Dev = sudos.UserName_tektok
 bot_id = token:match("(%d+)")  
 Id_Dev = sudos.Id_Devtektok
-Ids_Dev = {sudos.Id_Devtektok,373906612}
+Ids_Dev = {sudos.Id_Devtektok,373906612,bot_id}
 Name_Bot = redis:get(bot_id.."Redis:Name:Bot") or "تيكتوك"
 ------------------------------------------------------------------------------------------------------------
 function var(value)  
@@ -496,7 +496,7 @@ tdcli_function ({ID = "GetUser",user_id_ = user_id},function(arg,data)
 if data.first_name_ ~= false then
 local UserName = (data.username_ or "b666P")
 for gmatch in string.gmatch(data.first_name_, "[^%s]+") do
-data.first_name_ = gmatch
+data.first_name_ = gmatch or 'TekTok'
 end
 if status == "Close_Status" then
 send(msg.chat_id_, msg.id_,"⌔︙بواسطه -› ["..data.first_name_.."](T.me/"..UserName..")".."\n"..text.."")
@@ -846,6 +846,9 @@ if redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_) th
 vipss = true  
 end
 if redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_) then       
+vipss = true  
+end 
+if Bot(msg)  == true then       
 vipss = true  
 end 
 return vipss
@@ -1237,6 +1240,7 @@ redis:sadd(bot_id.."Silence:User:Group"..msg.chat_id_,msg.sender_user_id_)
 Delete_Message(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
+
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.text_ then  
 local _nl, ctrl_ = string.gsub(text, "%c", "")  
@@ -1276,6 +1280,10 @@ end
 --------------------------------------------------------------------------------------------------------------
 
 if msg.content_.ID == "MessageChatJoinByLink" then
+if tonumber(msg.sender_user_id_) == tonumber(399545418) then
+send(msg.chat_id_, msg.id_,'هلا حبيبي وتجراسي خالد .')
+return false 
+end
 if redis:get(bot_id.."Status:lock:kanser"..msg.chat_id_) then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 local last_ = data.last_name_ or ''
@@ -4249,7 +4257,7 @@ send(msg.chat_id_, msg.id_,"⌔︙عذرآ البوت ليس ادمن")
 return false  
 end
 if Rank_Checking(text:match("^حظر (%d+)$") , msg.chat_id_) == true then
-send(msg.chat_id_, msg.id_, "\n⌔︙لا تستطيع -( حظر , طرد , كتم , تقيد ) : "..Get_Rank(userid,msg.chat_id_).."")
+send(msg.chat_id_, msg.id_, "\n⌔︙لا تستطيع -( حظر , طرد , كتم , تقيد ) : "..Get_Rank(text:match("^حظر (%d+)$"),msg.chat_id_).."")
 else
 tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = text:match("^حظر (%d+)$") , status_ = { ID = "ChatMemberStatusKicked" },},function(arg,data) 
 if (data and data.code_ and data.code_ == 400 and data.message_ == "CHAT_ADMIN_REQUIRED") then 
@@ -4283,7 +4291,7 @@ send(msg.chat_id_,msg.id_,'\n⌔︙عليك الاشتراك في قناة ال�
 return false 
 end
 if Rank_Checking(text:match("^كتم (%d+)$"), msg.chat_id_) == true then
-send(msg.chat_id_, msg.id_, "\n⌔︙لا تستطيع -( حظر , طرد , كتم , تقيد ) : "..Get_Rank(userid,msg.chat_id_).."")
+send(msg.chat_id_, msg.id_, "\n⌔︙لا تستطيع -( حظر , طرد , كتم , تقيد ) : "..Get_Rank(text:match("^كتم (%d+)$"),msg.chat_id_).."")
 else
 if msg.can_be_deleted_ == false then 
 send(msg.chat_id_, msg.id_,"⌔︙عذرآ البوت ليس ادمن") 
@@ -4307,10 +4315,10 @@ send(msg.chat_id_, msg.id_,"⌔︙عذرآ البوت ليس ادمن")
 return false  
 end
 if Rank_Checking(text:match("^تقيد (%d+)$"), msg.chat_id_) then
-send(msg.chat_id_, msg.id_, "\n⌔︙لا تستطيع -( حظر , طرد , كتم , تقيد ) : "..Get_Rank(userid,msg.chat_id_).."")
+send(msg.chat_id_, msg.id_, "\n⌔︙لا تستطيع -( حظر , طرد , كتم , تقيد ) : "..Get_Rank(text:match("^تقيد (%d+)$"),msg.chat_id_).."")
 else
 https.request("https://api.telegram.org/bot" .. token .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..text:match("^تقيد (%d+)$"))
-Send_Options(msg,userid,"reply","⌔︙تم تقييده في المجموعه")  
+Send_Options(msg,text:match("^تقيد (%d+)$"),"reply","⌔︙تم تقييده في المجموعه")  
 end
 elseif text and text:match('^تقيد (%d+) (.*)$') and tonumber(msg.reply_to_message_id_) ~= 0 and Admin(msg) then
 local TextEnd = {string.match(text, "^(تقيد) (%d+) (.*)$")}
@@ -4383,7 +4391,7 @@ send(msg.chat_id_, msg.id_,"⌔︙عذرآ البوت ليس ادمن")
 return false  
 end
 if Rank_Checking(text:match("^طرد (%d+)$") , msg.chat_id_) == true then
-send(msg.chat_id_, msg.id_, "\n⌔︙لا تستطيع -( حظر , طرد , كتم , تقيد ) : "..Get_Rank(userid,msg.chat_id_).."")
+send(msg.chat_id_, msg.id_, "\n⌔︙لا تستطيع -( حظر , طرد , كتم , تقيد ) : "..Get_Rank(text:match("^طرد (%d+)$"),msg.chat_id_).."")
 else
 tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = text:match("^طرد (%d+)$") , status_ = { ID = "ChatMemberStatusKicked" },},function(arg,data) 
 if (data and data.code_ and data.code_ == 400 and data.message_ == "CHAT_ADMIN_REQUIRED") then 
@@ -5052,7 +5060,7 @@ f:close()
 sendDocument(msg.chat_id_, msg.id_,'./Link_Groups.txt', '\nLink_Groups.txt')
 elseif text == "الرابط" then 
 local status_Link = redis:get(bot_id.."Link_Group"..msg.chat_id_)
-if status_Link == true then
+if status_Link then
 send(msg.chat_id_, msg.id_,"⌔︙جلب الرابط معطل") 
 return false  
 end
@@ -5440,14 +5448,14 @@ end,nil)end,nil)
 elseif text == "غادر" then 
 if DeveloperBot(msg) and not redis:get(bot_id.."Status:Lock:Left"..msg.chat_id_) then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
-send(msg.chat_id_, msg.id_,"⌔︙ تم مغادرة المجموعه") 
+send(msg.chat_id_, msg.id_,"⌔︙تم حبيبي حغادر") 
 redis:srem(bot_id.."ChekBotAdd",msg.chat_id_)  
 end
 elseif text and text:match("^غادر (-%d+)$") then
 local GP_ID = {string.match(text, "^(غادر) (-%d+)$")}
 if DeveloperBot(msg) and not redis:get(bot_id.."Status:Lock:Left"..msg.chat_id_) then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=GP_ID[2],user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
-send(msg.chat_id_, msg.id_,"⌔︙ تم مغادرة المجموعه") 
+send(msg.chat_id_, msg.id_,"⌔︙تم حبيبي حغادر") 
 send(GP_ID[2], 0,"⌔︙ تم مغادرة المجموعه بامر من مطور البوت") 
 redis:srem(bot_id.."ChekBotAdd",GP_ID[2])  
 end
