@@ -1324,7 +1324,7 @@ end
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID ~= "MessageChatAddMembers" and redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") and not Vips(msg) then 
+if msg.content_.ID ~= "MessageChatAddMembers" and redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") and not Constructor(msg) then 
 if msg.sender_user_id_ ~= bot_id then
 floods = redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") or "nil"
 Num_Msg_Max = redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Num:Spam") or 5
@@ -3805,7 +3805,7 @@ elseif text and text:match("تنزيل (.*)") and tonumber(msg.reply_to_message_
 if redis:sismember(bot_id.."Validitys:Group"..msg.chat_id_,text:match("تنزيل (.*)")) then
 function Status_reply(extra, result, success)   
 local statusrt = redis:get(bot_id.."Add:Validity:Group:Rt"..text:match("تنزيل (.*)")..msg.chat_id_)
-if statusrt == "مميز" and Admin(msg) then
+if statusrt == "مميز" and Admin(msg) then 
 redis:srem(bot_id.."Vip:Group"..msg.chat_id_,result.sender_user_id_)  
 redis:del(bot_id.."Add:Validity:Users"..msg.chat_id_..result.sender_user_id_)
 elseif statusrt == "ادمن" and Owner(msg) then 
@@ -4997,7 +4997,7 @@ elseif text == 'مسح الرسائل المضافه' then
 redis:del(bot_id..'Num:Message:Userr'..msg.chat_id_..':'..msg.sender_user_id_)
 send(msg.chat_id_, msg.id_,'⌔︙تم مسح جميع رسائلك ') 
 elseif text == 'مسح سحكاتي' or text == 'مسح تعديلاتي' then
-redis:del(bot_id..'Num:Message:Edit'..msg.chat_id_..':'..msg.sender_user_id_)
+redis:del(bot_id..'Num:Message:Edit'..msg.chat_id_..msg.sender_user_id_)
 send(msg.chat_id_, msg.id_,'⌔︙تم مسح جميع تعديلاتك ') 
 elseif text == 'مسح جهاتي' then
 redis:del(bot_id..'Num:Add:Memp'..msg.chat_id_..':'..msg.sender_user_id_)
