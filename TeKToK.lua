@@ -149,7 +149,120 @@ end
 end  
 return Dev_tektok_User  
 end 
-
+local function DeveloperBot(msg) 
+deved = false
+local Status = redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) 
+if Status then
+deved = true  
+end
+if Dev_tektok(msg) == true then  
+deved = true  
+end  
+return deved
+end
+function PresidentGroup(msg)
+PresidentGroup = false
+local hash = redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) 
+if hash then 
+PresidentGroup = true  
+end
+if Dev_tektok(msg) == true then  
+PresidentGroup = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+PresidentGroup = true  
+end 
+return PresidentGroup
+end
+function Constructor(msg)
+Constructor = false    
+local hash = redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) 
+if hash then 
+Constructor = true  
+end
+if Dev_tektok(msg) == true then  
+Constructor = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+Constructor = true  
+end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+Constructor = true  
+end
+return Constructor
+end
+function Owner(msg)
+Owner = false
+local hash = redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_)    
+if hash then 
+Owner = true  
+end
+if Dev_tektok(msg) == true then  
+Owner = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+Owner = true  
+end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+Owner = true  
+end
+if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
+Owner = true  
+end
+return Owner
+end
+function Admin(msg)
+Admiin = false
+local hash = redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_)    
+if hash then 
+Admiin = true  
+end
+if Dev_tektok(msg) == true then  
+Admiin = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+Admiin = true  
+end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+Admiin = true  
+end
+if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
+Admiin = true  
+end
+if redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_) then  
+Admiin = true  
+end
+return Admiin 
+end
+function Vips(msg)
+vipss = false 
+local hash = redis:sismember(bot_id..'Vip:Group'..msg.chat_id_,msg.sender_user_id_) 
+if hash then 
+vipss = true  
+end
+if Dev_tektok(msg) == true then  
+vipss = true  
+end
+if redis:sismember(bot_id.."Developer:Bot", msg.sender_user_id_) then  
+vipss = true  
+end 
+if redis:sismember(bot_id.."President:Group"..msg.chat_id_, msg.sender_user_id_) then  
+vipss = true  
+end
+if redis:sismember(bot_id..'Constructor:Group'..msg.chat_id_, msg.sender_user_id_) then  
+vipss = true  
+end
+if redis:sismember(bot_id..'Manager:Group'..msg.chat_id_,msg.sender_user_id_) then  
+vipss = true  
+end
+if redis:sismember(bot_id..'Admin:Group'..msg.chat_id_,msg.sender_user_id_) then       
+vipss = true  
+end 
+if Bot(msg)  == true then       
+vipss = true  
+end 
+return vipss
+end
 ------------------------------------------------------------------------------------------------------------
 function Rank_Checking(user_id,chat_id)
 if Dev_tektok_User(user_id) then
@@ -1324,8 +1437,8 @@ end
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID ~= "MessageChatAddMembers" and redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") and not Constructor(msg) then 
-if msg.sender_user_id_ ~= bot_id then
+if msg.content_.ID ~= "MessageChatAddMembers" and redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") and not Vips(msg) then 
+if msg.sender_user_id_ ~= bot_id and not Vips(msg)  then
 floods = redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Spam:User") or "nil"
 Num_Msg_Max = redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Num:Spam") or 5
 Time_Spam = redis:hget(bot_id.."Spam:Group:User"..msg.chat_id_,"Num:Spam:Time") or 5
